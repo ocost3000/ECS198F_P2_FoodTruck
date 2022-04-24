@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         FoodTruck(
             "1",
             "Shah's Halal",
-            R.drawable.shah_s_halal,
+            "https://android-course-ucd.web.app/img/food-trucks/Shah's_Halal.png",
             3,
             "Silo Patio",
             LocalDateTime.of(2021, 10, 4, 11, 0, 0, 0),
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         FoodTruck(
             "2",
             "Hefty Gyros",
-            R.drawable.hefty_gyros,
+            "https://android-course-ucd.web.app/img/food-trucks/Hefty_Gyros.png",
             2,
             "West Quad",
             LocalDateTime.of(2021, 10, 4, 11, 0, 0, 0),
