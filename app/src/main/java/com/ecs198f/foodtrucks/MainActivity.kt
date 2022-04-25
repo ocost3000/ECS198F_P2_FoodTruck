@@ -4,30 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecs198f.foodtrucks.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.time.LocalDateTime
 
 class MainActivity : AppCompatActivity() {
 
-    private val foodTrucks = listOf(
-        FoodTruck(
-            "1",
-            "Shah's Halal",
-            "https://android-course-ucd.web.app/img/food-trucks/Shah's_Halal.png",
-            3,
-            "Silo Patio",
-            LocalDateTime.of(2021, 10, 4, 11, 0, 0, 0),
-            LocalDateTime.of(2021, 10, 4, 16, 0, 0, 0),
-        ),
-        FoodTruck(
-            "2",
-            "Hefty Gyros",
-            "https://android-course-ucd.web.app/img/food-trucks/Hefty_Gyros.png",
-            2,
-            "West Quad",
-            LocalDateTime.of(2021, 10, 4, 11, 0, 0, 0),
-            LocalDateTime.of(2021, 10, 4, 15, 0, 0, 0),
-        )
-    )
+    val service = Retrofit.Builder()
+        .baseUrl("https://api.foodtruck.schedgo.com")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(FoodTruckService::class.java)
+
+    private val foodTrucks = listOf<FoodTruck>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,5 +32,24 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
             adapter = FoodTruckListRecyclerViewAdapter(foodTrucks)
         }
+
+    }
+
+    // API requests
+    private fun updateList() {
+        service.listFoodTrucks().enqueue(object : Callback<List<FoodTruck>> {
+            override fun onResponse(
+                call: Call<List<FoodTruck>>,
+                response: Response<List<FoodTruck>>
+            ) {
+                // update the view
+                TODO("implement view first")
+            }
+
+            override fun onFailure(call: Call<List<FoodTruck>>, t: Throwable) {
+                throw t
+            }
+
+        })
     }
 }

@@ -20,11 +20,13 @@ class FoodTruckListRecyclerViewAdapter(private val items: List<FoodTruck>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        TODO("need jetpack frontend in order to implement Glide")
+
         items[position].let {
             holder.binding.apply {
                 foodTruckListItemTitle.text = it.name
                 foodTruckListItemPriceLevel.text = "$".repeat(it.priceLevel)
-                foodTruckListItemImage.setImageResource(it.imageResId)
+                // IMPLEMENT GLIDE HERE foodTruckListItemImage.setImageResource(it.imageResId)
                 foodTruckListItemLocation.text = it.location
                 foodTruckListItemTime.text = it.formattedTimeInterval
             }
