@@ -9,21 +9,16 @@ import android.widget.TextView
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FoodTruckDetailFragment : Fragment() {
+
+    val foodTruckService: FoodTruckService = (requireActivity() as MainActivity).service
+
     // handle arguments specified in nav_graph
     private val args: FoodTruckDetailFragmentArgs by navArgs()
-
-
-    /* Boilerplate
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-     */
 
     val foodItems = listOf<FoodItem>(
         FoodItem(
@@ -75,26 +70,20 @@ class FoodTruckDetailFragment : Fragment() {
         time.text = args.truckTime
     }
 
-    /* Boilerplate
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FoodTruckDetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FoodTruckDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    /*
+    private fun updateList() {
+        foodTruckService.listFoodItems().enqueue(object : Callback<List<FoodItem>> {
+            override fun onResponse(
+                call: Call<List<FoodItem>>,
+                response: Response<List<FoodItem>>
+            ) {
+                TODO("Change recycler view")
             }
-    }
 
+            override fun onFailure(call: Call<List<FoodItem>>, t: Throwable) {
+                throw t
+            }
+        })
+    }
      */
 }

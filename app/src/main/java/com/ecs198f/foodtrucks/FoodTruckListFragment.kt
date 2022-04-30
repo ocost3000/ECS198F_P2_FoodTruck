@@ -7,15 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDateTime
 
 class FoodTruckListFragment : Fragment() {
+
+    val foodTruckService: FoodTruckService = (requireActivity() as MainActivity).service
 
     private val foodTrucks = listOf(
         FoodTruck(
             "1",
             "Shah's Halal",
-            R.drawable.shah_s_halal,
+            "https://android-course-ucd.web.app/img/food-trucks/Shah's_Halal.png",
             3,
             "Silo Patio",
             LocalDateTime.of(2021, 10, 4, 11, 0, 0, 0),
@@ -24,7 +29,7 @@ class FoodTruckListFragment : Fragment() {
         FoodTruck(
             "2",
             "Hefty Gyros",
-            R.drawable.hefty_gyros,
+            "https://android-course-ucd.web.app/img/food-trucks/Hefty_Gyros.png",
             2,
             "West Quad",
             LocalDateTime.of(2021, 10, 4, 11, 0, 0, 0),
@@ -49,11 +54,22 @@ class FoodTruckListFragment : Fragment() {
 
     }
 
-    /* May not be needed
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-     */
+    /*
+    private fun updateList() {
+        foodTruckService.listFoodTrucks().enqueue(object: Callback<List<FoodTruck>> {
+            override fun onResponse(
+                call: Call<List<FoodTruck>>,
+                response: Response<List<FoodTruck>>
+            ) {
+                TODO("update view")
+            }
 
+            override fun onFailure(call: Call<List<FoodTruck>>, t: Throwable) {
+                throw t
+            }
+        })
+    }
+
+     */
 
 }
