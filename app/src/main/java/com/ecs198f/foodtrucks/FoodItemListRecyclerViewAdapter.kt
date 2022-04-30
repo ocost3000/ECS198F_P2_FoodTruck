@@ -5,8 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ecs198f.foodtrucks.databinding.FoodItemListItemBinding
 
-class FoodItemListRecyclerViewAdapter(private val items: List<FoodItem>) :
+class FoodItemListRecyclerViewAdapter(private var items: List<FoodItem>) :
     RecyclerView.Adapter<FoodItemListRecyclerViewAdapter.ViewHolder>() {
+
+    fun updateList(items: List<FoodItem>) {
+        this.items = items
+        notifyDataSetChanged()
+    }
 
     class ViewHolder(val binding: FoodItemListItemBinding) : RecyclerView.ViewHolder(binding.root)
 

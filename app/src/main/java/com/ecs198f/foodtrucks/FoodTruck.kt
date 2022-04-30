@@ -9,9 +9,9 @@ import java.time.format.DateTimeFormatter
 data class FoodTruck(
     val id: String,
     val name: String,
-    val imageResId: Int,
-    val priceLevel: Int,
+    val imageUrl: String,
     val location: String,
+    val priceLevel: Int,
     val openTime: LocalDateTime,
     val closeTime: LocalDateTime
 ) : Parcelable {
