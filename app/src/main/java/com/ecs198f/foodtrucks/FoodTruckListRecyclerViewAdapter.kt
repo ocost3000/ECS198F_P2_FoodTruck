@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class FoodTruckListRecyclerViewAdapter(private val foodTrucks: List<FoodTruck>) :
     RecyclerView.Adapter<FoodTruckListRecyclerViewAdapter.ViewHolder>() {
@@ -31,10 +32,15 @@ class FoodTruckListRecyclerViewAdapter(private val foodTrucks: List<FoodTruck>) 
 
         holder.apply {
             truckTitle.text = truck.name
-            truckImage.setImageResource(truck.imageResId)
+            // truckImage.setImageResource(truck.imageUrl)
             truckLocation.text = truck.location
             truckTime.text = truck.formattedTimeInterval
             truckPricePoint.text = "$".repeat(truck.priceLevel)
+            Glide
+                .with(this.itemView)
+                .load(truck.imageUrl)
+                .placeholder(R.drawable.hefty_gyros)
+                .into(truckImage)
         }
 
         holder.itemView.setOnClickListener {
