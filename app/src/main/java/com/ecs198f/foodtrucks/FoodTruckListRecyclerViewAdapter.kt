@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class FoodTruckListRecyclerViewAdapter(private val foodTrucks: List<FoodTruck>) :
@@ -36,13 +37,14 @@ class FoodTruckListRecyclerViewAdapter(private val foodTrucks: List<FoodTruck>) 
             truckPricePoint.text = "$".repeat(truck.priceLevel)
         }
 
-        /* Obsolete intent stuff
-        holder.itemView.setOnClickListener{
-            val intent = Intent(it.context, FoodTruckDetail::class.java)
-            intent.putExtra("FoodTruck", truck)
-            it.context.startActivity(intent)
+        holder.itemView.setOnClickListener {
+            // navigate to details page
+            val action = FoodTruckListFragmentDirections.actionFoodTruckListFragmentToFoodTruckDetailFragment()
+            action.truckName = truck.name
+            action.truckLocation = truck.location
+            action.truckTime = truck.formattedTimeInterval
+            it.findNavController().navigate(action)
         }
-         */
     }
 
     override fun getItemCount() = foodTrucks.size
