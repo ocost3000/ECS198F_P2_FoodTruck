@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter
 data class FoodTruck(
     val id: String,
     val name: String,
-    val imageResId: Int,
+    val imageUrl: String,
     val priceLevel: Int,
     val location: String,
     val openTime: LocalDateTime,

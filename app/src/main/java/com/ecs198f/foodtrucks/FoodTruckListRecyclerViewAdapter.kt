@@ -21,10 +21,13 @@ class FoodTruckListRecyclerViewAdapter(private val items: List<FoodTruck>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        TODO("need jetpack frontend in order to implement Glide")
+        
         items[position].let { foodTruck ->
             holder.binding.apply {
                 foodTruckListItemTitle.text = foodTruck.name
                 foodTruckListItemPriceLevel.text = "$".repeat(foodTruck.priceLevel)
+                // IMPLEMENT GLIDE HERE foodTruckListItemImage.setImageResource(it.imageResId)
                 foodTruckListItemImage.setImageResource(foodTruck.imageResId)
                 foodTruckListItemLocation.text = foodTruck.location
                 foodTruckListItemTime.text = foodTruck.formattedTimeInterval
@@ -34,8 +37,8 @@ class FoodTruckListRecyclerViewAdapter(private val items: List<FoodTruck>) :
                 // navigate to details page
                 val action = FoodTruckListFragmentDirections.actionFoodTruckListFragmentToFoodTruckDetailFragment(foodTruck)
                 it.findNavController().navigate(action)
-            }
-        }
+
+                
     }
 
     override fun getItemCount() = items.size
