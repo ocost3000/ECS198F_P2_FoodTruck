@@ -2,6 +2,7 @@ package com.ecs198f.foodtrucks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ecs198f.foodtrucks.databinding.FoodTruckListItemBinding
 
@@ -20,13 +21,19 @@ class FoodTruckListRecyclerViewAdapter(private val items: List<FoodTruck>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        items[position].let {
+        items[position].let { foodTruck ->
             holder.binding.apply {
-                foodTruckListItemTitle.text = it.name
-                foodTruckListItemPriceLevel.text = "$".repeat(it.priceLevel)
-                foodTruckListItemImage.setImageResource(it.imageResId)
-                foodTruckListItemLocation.text = it.location
-                foodTruckListItemTime.text = it.formattedTimeInterval
+                foodTruckListItemTitle.text = foodTruck.name
+                foodTruckListItemPriceLevel.text = "$".repeat(foodTruck.priceLevel)
+                foodTruckListItemImage.setImageResource(foodTruck.imageResId)
+                foodTruckListItemLocation.text = foodTruck.location
+                foodTruckListItemTime.text = foodTruck.formattedTimeInterval
+            }
+
+            holder.itemView.setOnClickListener{
+                // navigate to details page
+                val action = FoodTruckListFragmentDirections.actionFoodTruckListFragmentToFoodTruckDetailFragment(foodTruck)
+                it.findNavController().navigate(action)
             }
         }
     }
