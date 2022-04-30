@@ -14,7 +14,6 @@ import java.time.LocalDateTime
 
 class FoodTruckListFragment : Fragment() {
 
-    val foodTruckService: FoodTruckService = (requireActivity() as MainActivity).service
 
     private val foodTrucks = listOf(
         FoodTruck(
@@ -54,8 +53,14 @@ class FoodTruckListFragment : Fragment() {
 
     }
 
-    /*
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // TODO fix crash here
+        updateList()
+    }
+
     private fun updateList() {
+        val foodTruckService: FoodTruckService = (requireActivity() as MainActivity).service
         foodTruckService.listFoodTrucks().enqueue(object: Callback<List<FoodTruck>> {
             override fun onResponse(
                 call: Call<List<FoodTruck>>,
@@ -69,7 +74,5 @@ class FoodTruckListFragment : Fragment() {
             }
         })
     }
-
-     */
 
 }
