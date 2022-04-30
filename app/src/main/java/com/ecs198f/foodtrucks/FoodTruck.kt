@@ -1,8 +1,11 @@
 package com.ecs198f.foodtrucks
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+@Parcelize
 data class FoodTruck(
     val id: String,
     val name: String,
@@ -11,7 +14,7 @@ data class FoodTruck(
     val location: String,
     val openTime: LocalDateTime,
     val closeTime: LocalDateTime
-) {
+) : Parcelable {
     val formattedTimeInterval: String
         get() = "${openTime.format(timeOnlyFormatter)} - ${closeTime.format(dateTimeFormatter)}"
 

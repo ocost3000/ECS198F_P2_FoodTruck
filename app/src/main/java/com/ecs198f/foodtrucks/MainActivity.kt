@@ -2,7 +2,6 @@ package com.ecs198f.foodtrucks
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.ecs198f.foodtrucks.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,6 +9,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.time.LocalDateTime
+
 
 class MainActivity : AppCompatActivity() {
 
